@@ -6,6 +6,9 @@
 * OCP4 ACM Managed
 * OCP4 ACM Managed
 
+## Install kustomize
+[kustomize](https://kubernetes-sigs.github.io/kustomize/installation/)
+
 
 ## Install ACM Managed and Configure a HUB
 
