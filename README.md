@@ -1,4 +1,4 @@
-# Quarkus Cafe on ACM
+# Quarkus Cafe on ACM - WIP
 ![](../images/acm-quarkus-cafe-app.png)
 
 ## Provision RHPDS Enviornment 
@@ -93,6 +93,9 @@ Login to ACM Managed clusater (OCP4 ACM Hub)
 
 **Git clone your forked repo to server**
 
+**Create a personal access token for forked repo**
+[Creating a personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+
 **Update acm_configs/02_channel.yaml replace with your repo**
 ```
 pathname: 'https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-gitops.git'
@@ -112,38 +115,30 @@ The following location require an update before continuing
 * clusters/overlays/cluster2/quarkus-cafe-customermocker/patch-env.yaml
 * clusters/overlays/cluster3/quarkus-cafe-customermocker/patch-env.yaml
 
-Cluster1
+
+## Review cluster configuration
+**Cluster1**
 ```
-kustomize build clusters/overlays/cluster1/quarkus-cafe-barista/
-kustomize build clusters/overlays/cluster1/quarkus-cafe-core/
-kustomize build clusters/overlays/cluster1/quarkus-cafe-customermocker/
-kustomize build clusters/overlays/cluster1/quarkus-cafe-kitchen/
-kustomize build clusters/overlays/cluster1/quarkus-cafe-web/
+kustomize build clusters/overlays/cluster1 | less
 ```
 
-Cluster2 
+**Cluster2** 
 ```
-kustomize build clusters/overlays/cluster2/quarkus-cafe-barista/
-kustomize build clusters/overlays/cluster2/quarkus-cafe-core/
-kustomize build clusters/overlays/cluster2/quarkus-cafe-customermocker/
-kustomize build clusters/overlays/cluster2/quarkus-cafe-kitchen/
-kustomize build clusters/overlays/cluster2/quarkus-cafe-web/
+kustomize build clusters/overlays/cluster | less
 ```
 
-Cluster3
+**Cluster3**
 ```
-kustomize build clusters/overlays/cluster3/quarkus-cafe-barista/
-kustomize build clusters/overlays/cluster3/quarkus-cafe-core/
-kustomize build clusters/overlays/cluster3/quarkus-cafe-customermocker/
-kustomize build clusters/overlays/cluster3/quarkus-cafe-kitchen/
-kustomize build clusters/overlays/cluster3/quarkus-cafe-web/
+kustomize build clusters/overlays/cluster3 | less
 ```
 
 
 **Update routes for Quarkus Cafe Application**
 ```
 cp  clusters/overlays/cluster1/quarkus-cafe-web/route.yaml.backup clusters/overlays/cluster1/quarkus-cafe-web/route.yaml
+
 cp  clusters/overlays/cluster2/route.yaml.backup  clusters/overlays/cluster2/quarkus-cafe-web/route.yaml
+
 cp  clusters/overlays/cluster3/route.yaml.backup  clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
 
 # Define the variable of `ROUTE_CLUSTER1`
@@ -163,6 +158,15 @@ sed -i "s/changeme/${ROUTE_CLUSTER2}/" clusters/overlays/cluster3/quarkus-cafe-w
 
 # Replace the value of changeme with `ROUTE_CLUSTER3` in the file `route.yaml`  ::: OPTIONAL
 sed -i "s/changeme/${ROUTE_CLUSTER3}/" clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
+```
+
+**Commit and push changes to Github**
+```
+git add clusters/
+
+git commit -m "Updating Variables for Deployment"
+
+git push 
 ```
 
 **Use context hubcluster**
