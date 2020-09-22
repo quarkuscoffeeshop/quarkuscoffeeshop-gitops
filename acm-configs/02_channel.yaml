@@ -4,5 +4,5 @@ metadata:
   name: quarkus-cafe-demo-channel
   namespace: quarkus-cafe-demo
 spec:
-  pathname: 'https://github.com/tosin2013/quarkus-cafe-demo.git'
+  pathname: 'https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-gitops.git'
   type: GitHub

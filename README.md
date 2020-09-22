@@ -4,6 +4,7 @@
 ## Provision RHPDS Enviornment 
 * OCP4 ACM Hub
 * OCP4 ACM Managed
+* OCP4 ACM Managed
 
 
 ## Install ACM Managed and Configure a HUB
@@ -88,6 +89,14 @@ oc config use-context cluster1
 **From ACM**
 Login to ACM Managed clusater (OCP4 ACM Hub)
 
+**Fork quarkuscoffeeshop-gitops github repo**
+
+**Git clone your forked repo to server**
+
+**Update acm_configs/02_channel.yaml replace with your repo**
+```
+pathname: 'https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-gitops.git'
+```
 **Update routes for Quarkus Cafe Application**
 ```
 cp  clusters/cluster1/quarkus-cafe-web/route.yaml.backup clusters/cluster1/quarkus-cafe-web/route.yaml
@@ -142,15 +151,15 @@ oc create -f acm-configs/03_application_webapp.yaml
 **Create placement rules**
 ```
 oc create -f acm-configs/04_placement_cluster1.yaml
-oc create -f 04_placement_cluster2.yaml
-oc create -f 04_placement_cluster3.yaml
+oc create -f acm-configs/04_placement_cluster2.yaml
+oc create -f acm-configs/04_placement_cluster3.yaml
 ```
 
 **Create subscription**
 ```
 oc create -f acm-configs/05_subscription_cluster1.yaml
-oc create -f 05_subscription_cluster2.yaml
-oc create -f 05_subscription_cluster3.yaml
+oc create -f acm-configs/05_subscription_cluster2.yaml
+oc create -f acm-configs/05_subscription_cluster3.yaml
 ```
 
 **Verify the deployments have been created on all the clusters.**
