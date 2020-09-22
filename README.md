@@ -105,46 +105,46 @@ pathname: 'https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-gitops.git'
 
 ### update values for each cluster and push it to Github
 The following location require an update before continuing 
-* clusters/cluster1/quarkus-cafe-web/patch-env.yaml
-* clusters/cluster2/quarkus-cafe-web/patch-env.yaml
-* clusters/cluster3/quarkus-cafe-web/patch-env.yaml
-* clusters/cluster1/quarkus-cafe-customermocker/patch-env.yaml
-* clusters/cluster2/quarkus-cafe-customermocker/patch-env.yaml
-* clusters/cluster3/quarkus-cafe-customermocker/patch-env.yaml
+* clusters/overlays/cluster1/quarkus-cafe-web/patch-env.yaml
+* clusters/overlays/cluster2/quarkus-cafe-web/patch-env.yaml
+* clusters/overlays/cluster3/quarkus-cafe-web/patch-env.yaml
+* clusters/overlays/cluster1/quarkus-cafe-customermocker/patch-env.yaml
+* clusters/overlays/cluster2/quarkus-cafe-customermocker/patch-env.yaml
+* clusters/overlays/cluster3/quarkus-cafe-customermocker/patch-env.yaml
 
 Cluster1
 ```
-kustomize build clusters/cluster1/quarkus-cafe-barista/
-kustomize build clusters/cluster1/quarkus-cafe-core/
-kustomize build clusters/cluster1/quarkus-cafe-customermocker/
-kustomize build clusters/cluster1/quarkus-cafe-kitchen/
-kustomize build clusters/cluster1/quarkus-cafe-web/
+kustomize build clusters/overlays/cluster1/quarkus-cafe-barista/
+kustomize build clusters/overlays/cluster1/quarkus-cafe-core/
+kustomize build clusters/overlays/cluster1/quarkus-cafe-customermocker/
+kustomize build clusters/overlays/cluster1/quarkus-cafe-kitchen/
+kustomize build clusters/overlays/cluster1/quarkus-cafe-web/
 ```
 
 Cluster2 
 ```
-kustomize build clusters/cluster2/quarkus-cafe-barista/
-kustomize build clusters/cluster2/quarkus-cafe-core/
-kustomize build clusters/cluster2/quarkus-cafe-customermocker/
-kustomize build clusters/cluster2/quarkus-cafe-kitchen/
-kustomize build clusters/cluster2/quarkus-cafe-web/
+kustomize build clusters/overlays/cluster2/quarkus-cafe-barista/
+kustomize build clusters/overlays/cluster2/quarkus-cafe-core/
+kustomize build clusters/overlays/cluster2/quarkus-cafe-customermocker/
+kustomize build clusters/overlays/cluster2/quarkus-cafe-kitchen/
+kustomize build clusters/overlays/cluster2/quarkus-cafe-web/
 ```
 
 Cluster3
 ```
-kustomize build clusters/cluster3/quarkus-cafe-barista/
-kustomize build clusters/cluster3/quarkus-cafe-core/
-kustomize build clusters/cluster3/quarkus-cafe-customermocker/
-kustomize build clusters/cluster3/quarkus-cafe-kitchen/
-kustomize build clusters/cluster3/quarkus-cafe-web/
+kustomize build clusters/overlays/cluster3/quarkus-cafe-barista/
+kustomize build clusters/overlays/cluster3/quarkus-cafe-core/
+kustomize build clusters/overlays/cluster3/quarkus-cafe-customermocker/
+kustomize build clusters/overlays/cluster3/quarkus-cafe-kitchen/
+kustomize build clusters/overlays/cluster3/quarkus-cafe-web/
 ```
 
 
 **Update routes for Quarkus Cafe Application**
 ```
-cp  clusters/cluster1/quarkus-cafe-web/route.yaml.backup clusters/cluster1/quarkus-cafe-web/route.yaml
-cp  clusters/cluster2/route.yaml.backup  clusters/cluster2/route.yaml
-cp  clusters/cluster3/route.yaml.backup  clusters/cluster3/route.yaml
+cp  clusters/overlays/cluster1/quarkus-cafe-web/route.yaml.backup clusters/overlays/cluster1/quarkus-cafe-web/route.yaml
+cp  clusters/overlays/cluster2/route.yaml.backup  clusters/overlays/cluster2/quarkus-cafe-web/route.yaml
+cp  clusters/overlays/cluster3/route.yaml.backup  clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
 
 # Define the variable of `ROUTE_CLUSTER1`
 ROUTE_CLUSTER1=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
@@ -156,13 +156,13 @@ ROUTE_CLUSTER2=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster2 get in
 ROUTE_CLUSTER3=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 
 # Replace the value of changeme with `ROUTE_CLUSTER1` in the file `route.yaml`
-sed -i "s/changeme/${ROUTE_CLUSTER1}/" clusters/cluster1/quarkus-cafe-web/route.yaml
+sed -i "s/changeme/${ROUTE_CLUSTER1}/" clusters/overlays/cluster1/quarkus-cafe-web/route.yaml
 
 # Replace the value of changeme with `ROUTE_CLUSTER2` in the file `route.yaml`
-sed -i "s/changeme/${ROUTE_CLUSTER2}/" cluster2/route.yaml
+sed -i "s/changeme/${ROUTE_CLUSTER2}/" clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
 
 # Replace the value of changeme with `ROUTE_CLUSTER3` in the file `route.yaml`  ::: OPTIONAL
-sed -i "s/changeme/${ROUTE_CLUSTER3}/" cluster3/route.yaml
+sed -i "s/changeme/${ROUTE_CLUSTER3}/" clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
 ```
 
 **Use context hubcluster**
