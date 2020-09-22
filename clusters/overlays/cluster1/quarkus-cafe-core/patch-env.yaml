@@ -9,7 +9,7 @@ spec:
         - name: quarkus-cafe-core
           env:
             - name: KAFKA_BOOTSTRAP_URLS
-              value: cafe-cluster-kafka-bootstraaap:9092
+              value: cafe-cluster-kafka-bootstrap:9092
             - name: MONGO_DB
               value: cafedb
             - name: MONGO_URL

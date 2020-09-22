@@ -103,7 +103,7 @@ pathname: 'https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-gitops.git'
 
 ### Configure Services using kustomize
 ## Edit the following for each microservice
-* imageTag os located under the kustomiztion.yaml in each directory 
+* imageTag is located under the kustomiztion.yaml in each directory 
 * enviornment varaibles are located in each directory under patch-env.yaml
 
 ### update values for each cluster and push it to Github

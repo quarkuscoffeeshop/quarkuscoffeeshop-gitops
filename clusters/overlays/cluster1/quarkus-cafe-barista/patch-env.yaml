@@ -9,4 +9,4 @@ spec:
         - name: quarkus-cafe-barista
           env:
             - name: KAFKA_BOOTSTRAP_URLS
-              value: cafe-cluster-kafka-bootstrapp:9092
+              value: cafe-cluster-kafka-bootstrap:9092
