@@ -7,10 +7,10 @@ metadata:
     deployment: quarkus-cafe-app
   annotations:
     apps.open-cluster-management.io/github-branch: master
-    apps.open-cluster-management.io/github-path: clusters/cluster2
+    apps.open-cluster-management.io/github-path: clusters/overlays/cluster2
 spec:
   channel: quarkus-cafe-demo/quarkus-cafe-demo-channel
   placement: 
     placementRef: 
       kind: PlacementRule
-      name: cluster1
+      name: cluster2
