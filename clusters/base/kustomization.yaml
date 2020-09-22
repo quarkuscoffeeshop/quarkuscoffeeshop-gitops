@@ -1,0 +1,6 @@
+resources:
+- quarkus-cafe-barista-service.yaml
+- quarkus-cafe-core-service.yaml
+- quarkus-cafe-customermocker-service.yaml
+- quarkus-cafe-kitchen-service.yaml
+- quarkus-cafe-web-service.yaml
