@@ -86,8 +86,8 @@ oc config use-context cluster1
 ```
 
 ## Deploy Quarkus cafe Application on ACM Hub
-**From ACM**
-Login to ACM Managed clusater (OCP4 ACM Hub)
+**From ACM**  
+Login to ACM Managed cluster (OCP4 ACM Hub)
 
 **Fork quarkuscoffeeshop-gitops github repo**
 
