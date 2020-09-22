@@ -93,7 +93,7 @@ Login to ACM Managed clusater (OCP4 ACM Hub)
 
 **Git clone your forked repo to server**
 
-**Create a personal access token for forked repo**
+**Optional: Create a personal access token for forked repo**  
 [Creating a personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 
 **Update acm_configs/02_channel.yaml replace with your repo**
