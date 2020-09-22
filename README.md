@@ -97,11 +97,54 @@ Login to ACM Managed clusater (OCP4 ACM Hub)
 ```
 pathname: 'https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-gitops.git'
 ```
+
+### Configure Services using kustomize
+## Edit the following for each microservice
+* imageTag os located under the kustomiztion.yaml in each directory 
+* enviornment varaibles are located in each directory under patch-env.yaml
+
+### update values for each cluster and push it to Github
+The following location require an update before continuing 
+* clusters/cluster1/quarkus-cafe-web/patch-env.yaml
+* clusters/cluster2/quarkus-cafe-web/patch-env.yaml
+* clusters/cluster3/quarkus-cafe-web/patch-env.yaml
+* clusters/cluster1/quarkus-cafe-customermocker/patch-env.yaml
+* clusters/cluster2/quarkus-cafe-customermocker/patch-env.yaml
+* clusters/cluster3/quarkus-cafe-customermocker/patch-env.yaml
+
+Cluster1
+```
+kustomize build clusters/cluster1/quarkus-cafe-barista/
+kustomize build clusters/cluster1/quarkus-cafe-core/
+kustomize build clusters/cluster1/quarkus-cafe-customermocker/
+kustomize build clusters/cluster1/quarkus-cafe-kitchen/
+kustomize build clusters/cluster1/quarkus-cafe-web/
+```
+
+Cluster2 
+```
+kustomize build clusters/cluster2/quarkus-cafe-barista/
+kustomize build clusters/cluster2/quarkus-cafe-core/
+kustomize build clusters/cluster2/quarkus-cafe-customermocker/
+kustomize build clusters/cluster2/quarkus-cafe-kitchen/
+kustomize build clusters/cluster2/quarkus-cafe-web/
+```
+
+Cluster3
+```
+kustomize build clusters/cluster3/quarkus-cafe-barista/
+kustomize build clusters/cluster3/quarkus-cafe-core/
+kustomize build clusters/cluster3/quarkus-cafe-customermocker/
+kustomize build clusters/cluster3/quarkus-cafe-kitchen/
+kustomize build clusters/cluster3/quarkus-cafe-web/
+```
+
+
 **Update routes for Quarkus Cafe Application**
 ```
 cp  clusters/cluster1/quarkus-cafe-web/route.yaml.backup clusters/cluster1/quarkus-cafe-web/route.yaml
-cp overlays/cluster2/route.yaml.backup overlays/cluster2/route.yaml
-cp overlays/cluster3/route.yaml.backup overlays/cluster3/route.yaml
+cp  clusters/cluster2/route.yaml.backup  clusters/cluster2/route.yaml
+cp  clusters/cluster3/route.yaml.backup  clusters/cluster3/route.yaml
 
 # Define the variable of `ROUTE_CLUSTER1`
 ROUTE_CLUSTER1=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
@@ -116,10 +159,10 @@ ROUTE_CLUSTER3=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster3 get in
 sed -i "s/changeme/${ROUTE_CLUSTER1}/" clusters/cluster1/quarkus-cafe-web/route.yaml
 
 # Replace the value of changeme with `ROUTE_CLUSTER2` in the file `route.yaml`
-sed -i "s/changeme/${ROUTE_CLUSTER2}/" overlays/cluster2/route.yaml
+sed -i "s/changeme/${ROUTE_CLUSTER2}/" cluster2/route.yaml
 
 # Replace the value of changeme with `ROUTE_CLUSTER3` in the file `route.yaml`  ::: OPTIONAL
-sed -i "s/changeme/${ROUTE_CLUSTER3}/" overlays/cluster3/route.yaml
+sed -i "s/changeme/${ROUTE_CLUSTER3}/" cluster3/route.yaml
 ```
 
 **Use context hubcluster**
