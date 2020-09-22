@@ -210,3 +210,19 @@ oc create -f acm-configs/05_subscription_cluster3.yaml
 ```
 
 **Verify the deployments have been created on all the clusters.**
+```
+# cluster 1 
+oc config use-context cluster1
+oc get pods -n quarkus-cafe-demo
+
+# cluster 2
+oc config use-context cluster1
+oc get pods -n quarkus-cafe-demo
+
+# cluster 3
+oc config use-context cluster1
+oc get pods -n quarkus-cafe-demo
+```
+
+
+**Expose Route for quarkus cafe**
