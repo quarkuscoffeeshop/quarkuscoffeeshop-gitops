@@ -227,15 +227,15 @@ oc get pods -n quarkus-cafe-demo
 
 **Access the cluster URls**
 ```
-# Define the variable of `ROUTE_CLUSTER1`
+# Test against cluster 1
 ROUTE_CLUSTER1=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 echo http://$ROUTE_CLUSTER1/cafe
 
-# Define the variable of `ROUTE_CLUSTER2`
+# Test against cluster 2
 ROUTE_CLUSTER2=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 echo http://$ROUTE_CLUSTER2/cafe
 
-# Define the variable of `ROUTE_CLUSTER3`  ::: OPTIONAL
+# Test against cluster 3 ::: OPTIONAL
 ROUTE_CLUSTER3=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 echo http://$ROUTE_CLUSTER3/cafe
 ```
