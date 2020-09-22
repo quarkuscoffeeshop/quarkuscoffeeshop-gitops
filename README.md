@@ -124,7 +124,7 @@ kustomize build clusters/overlays/cluster1 | less
 
 **Cluster2** 
 ```
-kustomize build clusters/overlays/cluster | less
+kustomize build clusters/overlays/cluster2 | less
 ```
 
 **Cluster3**
@@ -137,9 +137,9 @@ kustomize build clusters/overlays/cluster3 | less
 ```
 cp  clusters/overlays/cluster1/quarkus-cafe-web/route.yaml.backup clusters/overlays/cluster1/quarkus-cafe-web/route.yaml
 
-cp  clusters/overlays/cluster2/route.yaml.backup  clusters/overlays/cluster2/quarkus-cafe-web/route.yaml
+cp  clusters/overlays/cluster2/quarkus-cafe-web/route.yaml.backup  clusters/overlays/cluster2/quarkus-cafe-web/route.yaml
 
-cp  clusters/overlays/cluster3/route.yaml.backup  clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
+cp  clusters/overlays/cluster3/quarkus-cafe-web/route.yaml.backup  clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
 
 # Define the variable of `ROUTE_CLUSTER1`
 ROUTE_CLUSTER1=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
@@ -154,7 +154,7 @@ ROUTE_CLUSTER3=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster3 get in
 sed -i "s/changeme/${ROUTE_CLUSTER1}/" clusters/overlays/cluster1/quarkus-cafe-web/route.yaml
 
 # Replace the value of changeme with `ROUTE_CLUSTER2` in the file `route.yaml`
-sed -i "s/changeme/${ROUTE_CLUSTER2}/" clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
+sed -i "s/changeme/${ROUTE_CLUSTER2}/" clusters/overlays/cluster2/quarkus-cafe-web/route.yaml
 
 # Replace the value of changeme with `ROUTE_CLUSTER3` in the file `route.yaml`  ::: OPTIONAL
 sed -i "s/changeme/${ROUTE_CLUSTER3}/" clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
@@ -225,4 +225,17 @@ oc get pods -n quarkus-cafe-demo
 ```
 
 
-**Expose Route for quarkus cafe**
+**Access the cluster URls**
+```
+# Define the variable of `ROUTE_CLUSTER1`
+ROUTE_CLUSTER1=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+echo http://$ROUTE_CLUSTER1/cafe
+
+# Define the variable of `ROUTE_CLUSTER2`
+ROUTE_CLUSTER2=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+echo http://$ROUTE_CLUSTER2/cafe
+
+# Define the variable of `ROUTE_CLUSTER3`  ::: OPTIONAL
+ROUTE_CLUSTER3=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+echo http://$ROUTE_CLUSTER3/cafe
+```
