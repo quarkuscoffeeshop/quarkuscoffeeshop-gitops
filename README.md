@@ -242,3 +242,6 @@ echo http://$ROUTE_CLUSTER2/cafe
 ROUTE_CLUSTER3=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 echo http://$ROUTE_CLUSTER3/cafe
 ```
+
+### Todo 
+* Add HAproxy Global load balancer support
