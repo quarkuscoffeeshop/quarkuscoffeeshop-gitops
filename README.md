@@ -111,6 +111,16 @@ pathname: 'https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-gitops.git'
 * imageTag is located under the kustomiztion.yaml in each directory 
 * enviornment varaibles are located in each directory under patch-env.yaml
 
+### Collect the quarkus cafe endpoints for config files below 
+```
+echo "Cluster 1: $(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')"
+
+echo "Cluster 2: $(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')"
+
+echo "Cluster 2: $(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')"
+```
+
+
 ### update values for each cluster and push it to Github
 The following location require an update before continuing 
 * clusters/overlays/cluster1/quarkus-cafe-web/patch-env.yaml
