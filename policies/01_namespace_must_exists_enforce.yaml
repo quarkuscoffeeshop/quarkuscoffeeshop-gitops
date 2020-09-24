@@ -28,7 +28,7 @@ spec:
                 kind: Namespace
                 apiVersion: v1
                 metadata:
-                  name: quarkus-code-demo
+                  name: quarkus-cafe-demo
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding

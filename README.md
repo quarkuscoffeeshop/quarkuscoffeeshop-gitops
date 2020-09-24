@@ -121,23 +121,6 @@ The following location require an update before continuing
 * clusters/overlays/cluster3/quarkus-cafe-customermocker/patch-env.yaml
 
 
-## Review cluster configuration
-**Cluster1**
-```
-kustomize build clusters/overlays/cluster1 | less
-```
-
-**Cluster2** 
-```
-kustomize build clusters/overlays/cluster2 | less
-```
-
-**Cluster3**
-```
-kustomize build clusters/overlays/cluster3 | less
-```
-
-
 **Update routes for Quarkus Cafe Application**
 ```
 cp  clusters/overlays/cluster1/quarkus-cafe-web/route.yaml.backup clusters/overlays/cluster1/quarkus-cafe-web/route.yaml
@@ -163,6 +146,23 @@ sed -i "s/changeme/${ROUTE_CLUSTER2}/" clusters/overlays/cluster2/quarkus-cafe-w
 
 # Replace the value of changeme with `ROUTE_CLUSTER3` in the file `route.yaml`  ::: OPTIONAL
 sed -i "s/changeme/${ROUTE_CLUSTER3}/" clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
+```
+
+
+## Review cluster configuration
+**Cluster1**
+```
+kustomize build clusters/overlays/cluster1 | less
+```
+
+**Cluster2** 
+```
+kustomize build clusters/overlays/cluster2 | less
+```
+
+**Cluster3**
+```
+kustomize build clusters/overlays/cluster3 | less
 ```
 
 **Commit and push changes to Github**

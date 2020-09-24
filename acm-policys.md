@@ -18,7 +18,7 @@ oc create -f policies/00_namespace.yaml
 4. The Policy creation Wizard will load, configure the following policy  
   a) Name: policy-namespace-enforce  
   b) Namespace: policies  
-  c) Specifications: Namespace - must have namespace 'quarkus-code-demo'  
+  c) Specifications: Namespace - must have namespace 'quarkus-cafe-demo'  
   d) Cluster binding: clusterid: "cluster1"  
   e) Standards: Uncheck the selected items  
   f) Categories: Uncheck the selected items  
