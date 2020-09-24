@@ -9,7 +9,8 @@
 ## Install kustomize
 [kustomize](https://kubernetes-sigs.github.io/kustomize/installation/)
 
-##  Quarkus Cafe Policies on ACM
+##  To update Policies on ACM use after the quarkus cafe has been deployed.
+
 [Quarkus Cafe Policies on ACM](acm-policys.md)
 
 ## Install ACM Managed and Configure a HUB
