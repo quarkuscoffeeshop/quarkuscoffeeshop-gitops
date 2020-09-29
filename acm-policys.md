@@ -54,7 +54,7 @@ oc --context hubcluster delete -f policies/01_namespace_must_exists_enforce.yaml
 
 2.  create the policy which will ensure a namespace named quarkus-cafe-demo exists on all the AWS clusters 
 ```
-oc --context create delete -f policies/02_namespace_must_exists_inform.yaml
+oc --context hubcluster create -f policies/02_namespace_must_exists_inform.yaml
 ```
 
 3. Check to see the status of the quarkus-cafe-demo namespace

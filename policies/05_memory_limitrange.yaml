@@ -28,7 +28,7 @@ spec:
                 apiVersion: v1
                 kind: LimitRange
                 metadata:
-                  name: mem-limit-range
+                  name: quarkus-cafe-customermocker
                 spec:
                   limits:
                   - default:

@@ -118,7 +118,7 @@ echo "Cluster 1: $(oc --context=cluster1 get ingresses.config.openshift.io clust
 
 echo "Cluster 2: $(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')"
 
-echo "Cluster 2: $(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')"
+echo "Cluster 3: $(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')"
 ```
 
 

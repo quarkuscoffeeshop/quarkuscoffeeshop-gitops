@@ -21,7 +21,7 @@ spec:
           severity: low
           namespaceSelector:
             exclude: ["kube-*"]
-            include: ["quarkus-code-demo"]
+            include: ["quarkus-cafe-demo"]
           object-templates:
             - complianceType: musthave
               objectDefinition:
