@@ -62,7 +62,7 @@ oc --context hubcluster create -f policies/02_namespace_must_exists_inform.yaml
 ## Deployment must exist on a given namespace and cluster (Inform)
 This policy will ensure a deployment named `quarkus-cafe-customermocker` exists in the namespace the quarkus-cafe-demo  for target clusters (labeled as clusterid: cluster1). In case the deployment doesn't exist, the cluster will be marked as non-compliant.
 ```
-oc --context create delete -f policies/03_deployment_must_exists_inform.yaml
+oc --context hubcluster create -f policies/03_deployment_must_exists_inform.yaml
 ```
 
 ## Pod must exist on a given namespace and cluster (Enforce)
