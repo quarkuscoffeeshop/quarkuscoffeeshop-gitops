@@ -1,0 +1,19 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: quarkuscoffeeshop-prod-deployment
+spec:
+  workspaces:
+    - name: source  
+  steps:
+    - name: quarkuscoffeeshop-prod-deployment
+      image: quay.io/openshift/origin-cli:latest
+      workingDir: /workspace/source  
+      command: ["/bin/bash", "-c"]
+      args:
+        - |-
+          echo "**** PROD ENVIRONMENT: Creating application on RH ACM ****"
+          oc apply -f acm-configs/04_placement_cluster3.yaml
+          echo "**** PROD ENVIRONMENT: Creating channel on RH ACM ****"
+          oc apply -f acm-configs/05_subscription_cluster3.yaml
