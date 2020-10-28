@@ -43,7 +43,17 @@ spec:
     - name: source
       workspace: shared-workspace
     runAfter:
-    - fetch-repository     
+    - fetch-repository
+    
+  - name: create-app-subscription
+    taskRef:
+      kind: Task        
+      name: quarkuscoffeeshop-dev-deployment
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    runAfter:
+    - create-namespaces
 
   - name: quarkuscoffeeshop-dev-deployment
     taskRef:
@@ -53,7 +63,7 @@ spec:
     - name: source
       workspace: shared-workspace
     runAfter:
-    - create-namespaces      
+    - create-app-subscription
 
   - name: quarkuscoffeeshop-qa-deployment
     taskRef:
