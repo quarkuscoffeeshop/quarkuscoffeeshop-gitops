@@ -6,4 +6,4 @@ metadata:
 spec:
   clusterSelector:
     matchLabels:
-      clusterid: cluster5
+      clusterid: cluster1
