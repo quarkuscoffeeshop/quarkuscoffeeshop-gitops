@@ -4,7 +4,7 @@ metadata:
   name: quarkus-cafe-web
   namespace: quarkus-cafe-demo
 spec:
-  host: quarkus-cafe-web-quarkus-cafe-demo.apps.democluster1.aws.mrmc.io
+  host: quarkus-cafe-web-quarkus-cafe-demo.apps.argocd-sa.aws.mrmc.io
   port:
     targetPort: 8080-tcp
   to:

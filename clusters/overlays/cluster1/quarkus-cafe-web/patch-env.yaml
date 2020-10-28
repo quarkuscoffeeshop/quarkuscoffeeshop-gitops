@@ -11,8 +11,8 @@ spec:
             - name: KAFKA_BOOTSTRAP_SERVERS
               value: cafe-cluster-kafka-bootstrap:9092
             - name: REST_URL
-              value: http://quarkus-cafe-web-quarkus-cafe-demo.apps.cluster-8c2c.8c2c.sandbox977.opentlc.com
+              value: http://quarkus-cafe-web-quarkus-cafe-demo.apps.democluster1.aws.mrmc.io
             - name: STREAM_URL
-              value:  http://quarkus-cafe-web-quarkus-cafe-demo.apps.cluster-8c2c.8c2c.sandbox977.opentlc.com/dashboard/stream
+              value:  http://quarkus-cafe-web-quarkus-cafe-demo.apps.democluster1.aws.mrmc.io/dashboard/stream
             - name: CORS_ORIGINS
-              value: http://quarkus-cafe-demo.apps.cluster-8c2c.8c2c.sandbox977.opentlc.com
+              value: http://quarkus-cafe-demo.apps.democluster1.aws.mrmc.io

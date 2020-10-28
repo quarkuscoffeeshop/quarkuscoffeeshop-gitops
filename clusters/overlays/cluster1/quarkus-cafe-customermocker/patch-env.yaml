@@ -9,4 +9,4 @@ spec:
         - name: quarkus-cafe-customermocker
           env:
             - name: REST_URL
-              value: http://quarkus-cafe-web-quarkus-cafe-demo.apps.cluster-8c2c.8c2c.sandbox977.opentlc.com
+              value: http://quarkus-cafe-web-quarkus-cafe-demo.apps.democluster1.aws.mrmc.io
