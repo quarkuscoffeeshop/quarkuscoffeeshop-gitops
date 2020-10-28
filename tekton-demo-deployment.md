@@ -6,7 +6,6 @@
 Deploy Quarkus CoffeeShop app using tekton pipelines via ACM.
 
 ![](images/tekton-pipeline2.png)
-![](images/tekton-pipeline.png)
 
 ## Install OpenShift Pipelines 
 [Installing the Red Hat OpenShift Pipelines Operator in web console](https://docs.openshift.com/container-platform/4.6/pipelines/installing-pipelines.html)

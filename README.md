@@ -1,4 +1,4 @@
-# Quarkus Cafe on ACM - WIP
+# Quarkus Cafe on ACM
 ![](../images/acm-quarkus-cafe-app.png)
 
 ## Provision RHPDS Enviornment 
@@ -190,6 +190,10 @@ git push
 oc config use-context hubcluster
 ```
 
+## Deploy using tekton pipelines
+[Quarkus Cafe Deployment  on ACM using tekton pipelines](tekton-demo-deployment.md)
+
+## Deploy via CLI
 **Create namespace for subscription**
 ```
 oc create -f acm-configs/01_namespace.yaml
