@@ -1,0 +1,21 @@
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: deploy-using-acm-run-1
+  namespace: quarkus-cafe-demo
+  labels:
+    tekton.dev/pipeline: deploy-using-acm
+spec:
+  params:
+    - name: deployment-name
+      value: deployment-1
+    - name: git-url
+      value: 'https://github.com/tosin2013/quarkuscoffeeshop-gitops.git'
+    - name: git-revision
+      value: master
+  pipelineRef:
+    name: deploy-using-acm
+  serviceAccountName: pipeline
+  timeout: 1h0m0s
