@@ -13,7 +13,8 @@ spec:
       command: ["/bin/bash", "-c"]
       args:
         - |-
+          ls -lath .
           echo "**** Creating Channel and on RH ACM ****"
-          oc apply -f acm-configs/02_channel.yaml
+          oc apply -f acm-configs/02_channel.yaml -n quarkus-cafe-demo
           echo "**** Creating Application Definition and on RH ACM ****"
-          oc apply -f acm-configs/03_application_webapp.yaml
+          oc apply -f acm-configs/03_application_webapp.yaml -n quarkus-cafe-demo

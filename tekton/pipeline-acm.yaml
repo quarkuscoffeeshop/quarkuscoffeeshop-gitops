@@ -48,7 +48,7 @@ spec:
   - name: create-app-subscription
     taskRef:
       kind: Task        
-      name: quarkuscoffeeshop-dev-deployment
+      name: create-app-subscription
     workspaces:
     - name: source
       workspace: shared-workspace
