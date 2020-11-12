@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quarkuscoffeshop-web
+  name: quarkuscoffeeshop-web
 spec:
   template:
     spec:
       containers:
-        - name: quarkuscoffeshop-web
+        - name: quarkuscoffeeshop-web
           env:
             - name: KAFKA_BOOTSTRAP_SERVERS
               value: cafe-cluster-kafka-bootstrap:9092
             - name: REST_URL
-              value: http://quarkuscoffeshop-web-quarkuscoffeshop-demo.apps.ocp4.example.com
+              value: http://quarkuscoffeeshop-web-quarkuscoffeeshop-demo.apps.ocp4.example.com
             - name: STREAM_URL
-              value:  http://quarkuscoffeshop-web-quarkuscoffeshop-demo.apps.ocp4.example.com/dashboard/stream
+              value:  http://quarkuscoffeeshop-web-quarkuscoffeeshop-demo.apps.ocp4.example.com/dashboard/stream
             - name: CORS_ORIGINS
-              value: http://quarkuscoffeshop-demo.apps.ocp4.example.com
+              value: http://quarkuscoffeeshop-demo.apps.ocp4.example.com
 
