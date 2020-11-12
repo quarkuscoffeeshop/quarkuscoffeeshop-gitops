@@ -14,6 +14,6 @@ spec:
       args:
         - |-
           echo "**** QA ENVIRONMENT: Creating application on RH ACM ****"
-          oc apply -f acm-configs/04_placement_cluster2.yaml -n quarkus-cafe-demo
+          oc apply -f acm-configs/04_placement_cluster2.yaml -n quarkuscoffeshop-demo
           echo "**** QA ENVIRONMENT: Creating channel on RH ACM ****"
-          oc apply -f acm-configs/05_subscription_cluster2.yaml -n quarkus-cafe-demo
+          oc apply -f acm-configs/05_subscription_cluster2.yaml -n quarkuscoffeshop-demo

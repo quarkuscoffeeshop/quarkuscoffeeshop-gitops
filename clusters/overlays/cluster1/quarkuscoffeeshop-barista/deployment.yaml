@@ -16,8 +16,8 @@ spec:
         app:  quarkuscoffeeshop-barista
         app.kubernetes.io/component: quarkuscoffeeshop-barista
         app.kubernetes.io/instance: quarkuscoffeeshop-barista
-        app.kubernetes.io/part-of: quarkus-cafe
-        quarkus-cafe: ""
+        app.kubernetes.io/part-of: quarkuscoffeshop
+        quarkuscoffeshop: ""
         app.openshift.io/runtime-namespace: quarkuscoffeeshop-demo
     spec:
       containers:
