@@ -6,8 +6,46 @@
 * OCP4 ACM Managed
 * OCP4 ACM Managed
 
+## Prerequisites for deployment 
+
 ## Install kustomize
 [kustomize](https://kubernetes-sigs.github.io/kustomize/installation/)
+```
+$ curl -s "https://raw.githubusercontent.com/\
+kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+$ sudo mv kustomize /usr/local/bin/
+```
+
+## Administrator Tasks On Target Cluster (OCP4 ACM Managed)
+
+
+### Run ansible playbook to install AMQ and MongoDB on target clusters. 
+```
+$ ansible-galaxy install tosin2013.quarkus_cafe_demo_role
+$ export DOMAIN=ocp4.example.com
+$ export OCP_TOKEN=123456789
+$ cat >deploy-quarkus-cafe.yml<<YAML
+- hosts: localhost
+  become: yes
+  vars:
+    openshift_token: ${OCP_TOKEN}
+    openshift_url: https://api.${DOMAIN}:6443
+    use_kubeconfig: false
+    insecure_skip_tls_verify: true
+    default_owner: ${USER}
+    default_group: ${USER}
+    project_namespace: quarkuscoffeeshop-demo
+    delete_deployment: false
+    skip_amq_install: false
+    skip_mongodb_operator_install: false
+    skip_quarkuscoffeeshop_helm_install: true
+    domain: ${DOMAIN}
+  roles:
+    - tosin2013.quarkus_cafe_demo_role
+YAML
+$ ansible-playbook  deploy-quarkus-cafe.yml
+```
+
 
 ##  To update Policies on ACM use after the quarkus cafe has been deployed.
 
@@ -24,32 +62,7 @@ Run Genereated command on target machine
 View Cluster status
 ![](https://i.imgur.com/YwLk7w4.png)
 
-## Administrator Tasks On Target Cluster (OCP4 ACM Managed)
 
-
-### Clone quarkus cafe demo repo locally 
-```
-git clone https://github.com/jeremyrdavis/quarkus-cafe-demo.git
-```
-
-### OpenShift 4.x Instructions 
-**Login to OpenShift and create project**
-```
-oc new-project quarkuscoffeeshop-demo
-```
-
-**cd into admin tasks directory**
-```
-cd quarkus-cafe-demo/support/helm-deployment/admin-tasks
-```
-
-**Run ansible playbook to install Red Hat AMQ and mongodb on target clusters**
-* [admin-tasks](https://github.com/jeremyrdavis/quarkus-cafe-demo/blob/master/support/helm-deployment/admin-tasks/README.md)
-
-**cd back into acm directory**  
-```
-cd ../../acm-deployment/
-```
 
 ## Configure OpenShift client context for cluster admin access 
 ```
