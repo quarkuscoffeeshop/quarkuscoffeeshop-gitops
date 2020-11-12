@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quarkus-cafe-barista
+  name: quarkuscoffeeshop-barista
   labels:
-    app: quarkus-cafe-barista
+    app: quarkuscoffeeshop-barista
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: quarkus-cafe-barista
+      app: quarkuscoffeeshop-barista
   template:
     metadata:
-      name: quarkus-cafe-barista-deployment
+      name: quarkuscoffeeshop-barista-deployment
       labels:
-        app:  quarkus-cafe-barista
-        app.kubernetes.io/component: quarkus-cafe-barista
-        app.kubernetes.io/instance: quarkus-cafe-barista
+        app:  quarkuscoffeeshop-barista
+        app.kubernetes.io/component: quarkuscoffeeshop-barista
+        app.kubernetes.io/instance: quarkuscoffeeshop-barista
         app.kubernetes.io/part-of: quarkus-cafe
         quarkus-cafe: ""
-        app.openshift.io/runtime-namespace: quarkus-cafe-demo
+        app.openshift.io/runtime-namespace: quarkuscoffeeshop-demo
     spec:
       containers:
-        - name: quarkus-cafe-barista
-          image: jeremydavis/quarkus-cafe-barista:2.4.0
+        - name: quarkuscoffeeshop-barista
+          image: jeremydavis/quarkuscoffeeshop-barista:4.1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8778

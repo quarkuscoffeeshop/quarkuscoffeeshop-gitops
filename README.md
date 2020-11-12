@@ -35,7 +35,7 @@ git clone https://github.com/jeremyrdavis/quarkus-cafe-demo.git
 ### OpenShift 4.x Instructions 
 **Login to OpenShift and create project**
 ```
-oc new-project quarkus-cafe-demo
+oc new-project quarkuscoffeeshop-demo
 ```
 
 **cd into admin tasks directory**
@@ -141,13 +141,13 @@ cp  clusters/overlays/cluster2/quarkus-cafe-web/route.yaml.backup  clusters/over
 cp  clusters/overlays/cluster3/quarkus-cafe-web/route.yaml.backup  clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
 
 # Define the variable of `ROUTE_CLUSTER1`
-ROUTE_CLUSTER1=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+ROUTE_CLUSTER1=quarkus-cafe-web-quarkuscoffeeshop-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 
 # Define the variable of `ROUTE_CLUSTER2`
-ROUTE_CLUSTER2=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+ROUTE_CLUSTER2=quarkus-cafe-web-quarkuscoffeeshop-demo.$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 
 # Define the variable of `ROUTE_CLUSTER3`  ::: OPTIONAL
-ROUTE_CLUSTER3=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+ROUTE_CLUSTER3=quarkus-cafe-web-quarkuscoffeeshop-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 
 # Replace the value of changeme with `ROUTE_CLUSTER1` in the file `route.yaml`
 sed -i "s/changeme/${ROUTE_CLUSTER1}/" clusters/overlays/cluster1/quarkus-cafe-web/route.yaml
@@ -233,30 +233,30 @@ oc create -f acm-configs/05_subscription_cluster3.yaml
 ```
 # cluster 1 
 oc config use-context cluster1
-oc get pods -n quarkus-cafe-demo
+oc get pods -n quarkuscoffeeshop-demo
 
 # cluster 2
 oc config use-context cluster1
-oc get pods -n quarkus-cafe-demo
+oc get pods -n quarkuscoffeeshop-demo
 
 # cluster 3
 oc config use-context cluster1
-oc get pods -n quarkus-cafe-demo
+oc get pods -n quarkuscoffeeshop-demo
 ```
 
 
 **Access the cluster URls**
 ```
 # Test against cluster 1
-ROUTE_CLUSTER1=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+ROUTE_CLUSTER1=quarkus-cafe-web-quarkuscoffeeshop-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 echo http://$ROUTE_CLUSTER1/cafe
 
 # Test against cluster 2
-ROUTE_CLUSTER2=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+ROUTE_CLUSTER2=quarkus-cafe-web-quarkuscoffeeshop-demo.$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 echo http://$ROUTE_CLUSTER2/cafe
 
 # Test against cluster 3 ::: OPTIONAL
-ROUTE_CLUSTER3=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+ROUTE_CLUSTER3=quarkus-cafe-web-quarkuscoffeeshop-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 echo http://$ROUTE_CLUSTER3/cafe
 ```
 

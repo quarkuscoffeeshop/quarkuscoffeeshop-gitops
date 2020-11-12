@@ -5,5 +5,5 @@ patchesStrategicMerge:
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
-- name: jeremydavis/quarkus-cafe-barista
-  newTag: 2.4.0
+- name: jeremydavis/quarkuscoffeeshop-barista
+  newTag: 4.1.0

@@ -2,28 +2,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quarkus-cafe-core
+  name: quarkuscoffeeshop-counter
   labels:
-    app: quarkus-cafe-core
+    app: quarkuscoffeeshop-counter
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: quarkus-cafe-core
+      app: quarkuscoffeeshop-counter
   template:
     metadata:
-      name: quarkus-cafe-core-deployment
+      name: quarkuscoffeeshop-counter-deployment
       labels:
-        app:  quarkus-cafe-core
-        app.kubernetes.io/component: quarkus-cafe-core
-        app.kubernetes.io/instance: quarkus-cafe-core
+        app:  quarkuscoffeeshop-counter
+        app.kubernetes.io/component: quarkuscoffeeshop-counter
+        app.kubernetes.io/instance: quarkuscoffeeshop-counter
         app.kubernetes.io/part-of: quarkus-cafe
         quarkus-cafe: ""
-        app.openshift.io/runtime-namespace: quarkus-cafe-demo
+        app.openshift.io/runtime-namespace: quarkuscoffeeshop-demo
     spec:
       containers:
-        - name: quarkus-cafe-core
-          image: jeremydavis/quarkus-cafe-core:2.4.0
+        - name: quarkuscoffeeshop-counter
+          image: jeremydavis/quarkuscoffeeshop-counter:4.1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

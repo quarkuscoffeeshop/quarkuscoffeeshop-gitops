@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: quarkus-cafe-barista
+  name: quarkuscoffeeshop-barista
   labels:
-    app:  quarkus-cafe-barista
+    app:  quarkuscoffeeshop-barista
 spec:
   selector:
-    app:  quarkus-cafe-barista
+    app:  quarkuscoffeeshop-barista
   type: ClusterIP
   ports:
     - name: 8778-tcp

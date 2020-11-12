@@ -18,7 +18,7 @@ oc create -f policies/00_namespace.yaml
 4. The Policy creation Wizard will load, configure the following policy  
   a) Name: policy-namespace-enforce  
   b) Namespace: policies  
-  c) Specifications: Namespace - must have namespace 'quarkus-cafe-demo'  
+  c) Specifications: Namespace - must have namespace 'quarkuscoffeeshop-demo'  
   d) Cluster binding: clusterid: "cluster1"  
   e) Standards: Uncheck the selected items  
   f) Categories: Uncheck the selected items  
@@ -52,15 +52,15 @@ oc create -f policies/01_namespace_must_exists_enforce.yaml
 oc --context hubcluster delete -f policies/01_namespace_must_exists_enforce.yaml
 ```
 
-2.  create the policy which will ensure a namespace named quarkus-cafe-demo exists on all the AWS clusters 
+2.  create the policy which will ensure a namespace named quarkuscoffeeshop-demo exists on all the AWS clusters 
 ```
 oc --context hubcluster create -f policies/02_namespace_must_exists_inform.yaml
 ```
 
-3. Check to see the status of the quarkus-cafe-demo namespace
+3. Check to see the status of the quarkuscoffeeshop-demo namespace
 
 ## Deployment must exist on a given namespace and cluster (Inform)
-This policy will ensure a deployment named `quarkus-cafe-customermocker` exists in the namespace the quarkus-cafe-demo  for target clusters (labeled as clusterid: cluster1). In case the deployment doesn't exist, the cluster will be marked as non-compliant.
+This policy will ensure a deployment named `quarkus-cafe-customermocker` exists in the namespace the quarkuscoffeeshop-demo  for target clusters (labeled as clusterid: cluster1). In case the deployment doesn't exist, the cluster will be marked as non-compliant.
 ```
 oc --context hubcluster create -f policies/03_deployment_must_exists_inform.yaml
 ```
@@ -72,22 +72,22 @@ oc --context hubcluster create  -f policies/04_pod_must_exists_enforce.yaml
 ```
 
 ## Limit Memory Range on a given namespace and cluster
-This policy will ensure that Pods have default memory requests and limits in the given Namespace. This policy will target the clusters (labeled as clusterid: cluster1) and the namespace quarkus-cafe-demo.
+This policy will ensure that Pods have default memory requests and limits in the given Namespace. This policy will target the clusters (labeled as clusterid: cluster1) and the namespace quarkuscoffeeshop-demo.
 
-The Policy will add default memory requests and limits to containers which do not provide resource configuration in the quarkus-cafe-demo namespace.
+The Policy will add default memory requests and limits to containers which do not provide resource configuration in the quarkuscoffeeshop-demo namespace.
 ```
 oc --context hubcluster create  -f policies//05_memory_limitrange.yaml
 ```
 
 Test that the quarkus-cafe-apps have the updated limits
 ```
-oc --context=cluster1 -n quarkus-cafe-demo get pods -l app=quarkus-cafe-barista -o jsonpath='{.items[*].spec.containers[*].resources}'
-oc --context=cluster2 -n quarkus-cafe-demo get pods -l app=quarkus-cafe-barista -o jsonpath='{.items[*].spec.containers[*].resources}'
-oc --context=cluster3 -n quarkus-cafe-demo get pods -l app=quarkus-cafe-barista -o jsonpath='{.items[*].spec.containers[*].resources}'
+oc --context=cluster1 -n quarkuscoffeeshop-demo get pods -l app=quarkus-cafe-barista -o jsonpath='{.items[*].spec.containers[*].resources}'
+oc --context=cluster2 -n quarkuscoffeeshop-demo get pods -l app=quarkus-cafe-barista -o jsonpath='{.items[*].spec.containers[*].resources}'
+oc --context=cluster3 -n quarkuscoffeeshop-demo get pods -l app=quarkus-cafe-barista -o jsonpath='{.items[*].spec.containers[*].resources}'
 
-oc --context=cluster1 -n quarkus-cafe-demo get pods -l app=quarkus-cafe-customermocker -o jsonpath='{.items[*].spec.containers[*].resources}'
-oc --context=cluster2 -n quarkus-cafe-demo get pods -l app=quarkus-cafe-customermocker -o jsonpath='{.items[*].spec.containers[*].resources}'
-oc --context=cluster3 -n quarkus-cafe-demo get pods -l app=quarkus-cafe-customermocker -o jsonpath='{.items[*].spec.containers[*].resources}'
+oc --context=cluster1 -n quarkuscoffeeshop-demo get pods -l app=quarkus-cafe-customermocker -o jsonpath='{.items[*].spec.containers[*].resources}'
+oc --context=cluster2 -n quarkuscoffeeshop-demo get pods -l app=quarkus-cafe-customermocker -o jsonpath='{.items[*].spec.containers[*].resources}'
+oc --context=cluster3 -n quarkuscoffeeshop-demo get pods -l app=quarkus-cafe-customermocker -o jsonpath='{.items[*].spec.containers[*].resources}'
 ```
 
 ## Related Links
