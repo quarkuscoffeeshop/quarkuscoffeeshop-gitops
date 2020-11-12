@@ -17,4 +17,4 @@ spec:
             - name: MONGO_USERNAME
               value: mongodb
             - name: MONGO_PASSWORD
-              value: mongodb
+              value: 7lIHuw&#0KrE
