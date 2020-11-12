@@ -21,14 +21,14 @@ spec:
           severity: low
           namespaceSelector:
             exclude: ["kube-*"]
-            include: ["quarkus-cafe-demo"]
+            include: ["quarkuscoffeshop-demo"]
           object-templates:
             - complianceType: musthave
               objectDefinition:
                 kind: Deployment
                 apiVersion: apps/v1
                 metadata:
-                  name: quarkus-cafe-customermocker
+                  name: quarkuscoffeshop-customermocker
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding

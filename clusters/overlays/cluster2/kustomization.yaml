@@ -3,6 +3,6 @@ bases:
 resources:
 - quarkuscoffeeshop-barista/
 - quarkuscoffeeshop-counter/
-- quarkus-cafe-customermocker/
+- quarkuscoffeshop-customermocker/
 - quarkuscoffeeshop-kitchen/
 - quarkuscoffeshop-web/
