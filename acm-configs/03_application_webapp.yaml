@@ -2,7 +2,7 @@ apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
   name: quarkus-cafe-app     
-  namespace: quarkus-cafe-demo
+  namespace: quarkuscoffeeshop-demo
 spec:
   selector:
     matchExpressions:
