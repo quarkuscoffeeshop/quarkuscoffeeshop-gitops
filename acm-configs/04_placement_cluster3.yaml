@@ -2,7 +2,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: cluster3
-  namespace: quarkus-cafe-demo
+  namespace: quarkuscoffeeshop-demo
 spec:
   clusterSelector:
     matchLabels:
