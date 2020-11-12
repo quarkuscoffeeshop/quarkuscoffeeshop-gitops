@@ -1,8 +1,0 @@
-bases:
-- ../../base
-resources:
-- quarkus-cafe-barista/
-- quarkus-cafe-core/
-- quarkus-cafe-customermocker/
-- quarkus-cafe-kitchen/
-- quarkus-cafe-web/

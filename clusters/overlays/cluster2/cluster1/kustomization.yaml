@@ -1,0 +1,8 @@
+bases:
+- ../../base
+resources:
+- quarkuscoffeeshop-barista/
+- quarkuscoffeeshop-counter/
+- quarkus-cafe-customermocker/
+- quarkuscoffeeshop-kitchen/
+- quarkuscoffeshop-web/

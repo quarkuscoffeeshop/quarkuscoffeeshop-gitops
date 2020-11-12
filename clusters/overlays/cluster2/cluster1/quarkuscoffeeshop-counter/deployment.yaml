@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quarkuscoffeeshop-counter
+  labels:
+    app: quarkuscoffeeshop-counter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quarkuscoffeeshop-counter
+  template:
+    metadata:
+      name: quarkuscoffeeshop-counter-deployment
+      labels:
+        app:  quarkuscoffeeshop-counter
+        app.kubernetes.io/component: quarkuscoffeeshop-counter
+        app.kubernetes.io/instance: quarkuscoffeeshop-counter
+        app.kubernetes.io/part-of: quarkus-cafe
+        quarkus-cafe: ""
+        app.openshift.io/runtime-namespace: quarkuscoffeeshop-demo
+    spec:
+      containers:
+        - name: quarkuscoffeeshop-counter
+          image: jeremydavis/quarkuscoffeeshop-counter:4.1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: KAFKA_BOOTSTRAP_URLS
+              value: cafe-cluster-kafka-bootstrap:9092
+            - name: MONGO_DB
+              value: cafedb
+            - name: MONGO_URL
+              value: mongodb://mongodb:mongodb@mongodb:27017/cafedb
+            - name: MONGO_USERNAME
+              value: mongodb
+            - name: MONGO_PASSWORD
+              value: mongodb
