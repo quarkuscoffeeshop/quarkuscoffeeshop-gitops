@@ -46,11 +46,6 @@ YAML
 $ ansible-playbook  deploy-quarkus-cafe.yml
 ```
 
-
-##  To update Policies on ACM use after the quarkus cafe has been deployed.
-
-[Quarkus Cafe Policies on ACM](acm-policys.md)
-
 ## Install ACM Managed and Configure a HUB
 
 Import an existing cluster
@@ -275,3 +270,8 @@ echo http://$ROUTE_CLUSTER3/cafe
 
 ### Todo 
 * Add HAproxy Global load balancer support
+
+
+##  To update Policies on ACM use after the quarkus cafe has been deployed.
+
+[Quarkus Cafe Policies on ACM](acm-policys.md)
