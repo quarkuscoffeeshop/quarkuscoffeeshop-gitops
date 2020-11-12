@@ -27,7 +27,7 @@ oc create -f policies/00_namespace.yaml
   i) Disable policy: Unmarked  
 5. Screenshot of Wizard  
 ![](images/create_policy.png)
-6. Ensure the quarkus-cafe-policies exists. By using the oc tool in order to check the status of the policy.
+6. Ensure the quarkuscoffeshop-policies exists. By using the oc tool in order to check the status of the policy.
 ```
 $ oc --context hubcluster -n policies get policy -o yaml policy-namespace-enforce
 <OUTPUT HIDDEN>
@@ -60,7 +60,7 @@ oc --context hubcluster create -f policies/02_namespace_must_exists_inform.yaml
 3. Check to see the status of the quarkuscoffeeshop-demo namespace
 
 ## Deployment must exist on a given namespace and cluster (Inform)
-This policy will ensure a deployment named `quarkus-cafe-customermocker` exists in the namespace the quarkuscoffeeshop-demo  for target clusters (labeled as clusterid: cluster1). In case the deployment doesn't exist, the cluster will be marked as non-compliant.
+This policy will ensure a deployment named `quarkuscoffeshop-customermocker` exists in the namespace the quarkuscoffeeshop-demo  for target clusters (labeled as clusterid: cluster1). In case the deployment doesn't exist, the cluster will be marked as non-compliant.
 ```
 oc --context hubcluster create -f policies/03_deployment_must_exists_inform.yaml
 ```
@@ -79,15 +79,15 @@ The Policy will add default memory requests and limits to containers which do no
 oc --context hubcluster create  -f policies//05_memory_limitrange.yaml
 ```
 
-Test that the quarkus-cafe-apps have the updated limits
+Test that the quarkuscoffeshop-apps have the updated limits
 ```
-oc --context=cluster1 -n quarkuscoffeeshop-demo get pods -l app=quarkus-cafe-barista -o jsonpath='{.items[*].spec.containers[*].resources}'
-oc --context=cluster2 -n quarkuscoffeeshop-demo get pods -l app=quarkus-cafe-barista -o jsonpath='{.items[*].spec.containers[*].resources}'
-oc --context=cluster3 -n quarkuscoffeeshop-demo get pods -l app=quarkus-cafe-barista -o jsonpath='{.items[*].spec.containers[*].resources}'
+oc --context=cluster1 -n quarkuscoffeeshop-demo get pods -l app=quarkuscoffeshop-barista -o jsonpath='{.items[*].spec.containers[*].resources}'
+oc --context=cluster2 -n quarkuscoffeeshop-demo get pods -l app=quarkuscoffeshop-barista -o jsonpath='{.items[*].spec.containers[*].resources}'
+oc --context=cluster3 -n quarkuscoffeeshop-demo get pods -l app=quarkuscoffeshop-barista -o jsonpath='{.items[*].spec.containers[*].resources}'
 
-oc --context=cluster1 -n quarkuscoffeeshop-demo get pods -l app=quarkus-cafe-customermocker -o jsonpath='{.items[*].spec.containers[*].resources}'
-oc --context=cluster2 -n quarkuscoffeeshop-demo get pods -l app=quarkus-cafe-customermocker -o jsonpath='{.items[*].spec.containers[*].resources}'
-oc --context=cluster3 -n quarkuscoffeeshop-demo get pods -l app=quarkus-cafe-customermocker -o jsonpath='{.items[*].spec.containers[*].resources}'
+oc --context=cluster1 -n quarkuscoffeeshop-demo get pods -l app=quarkuscoffeshop-customermocker -o jsonpath='{.items[*].spec.containers[*].resources}'
+oc --context=cluster2 -n quarkuscoffeeshop-demo get pods -l app=quarkuscoffeshop-customermocker -o jsonpath='{.items[*].spec.containers[*].resources}'
+oc --context=cluster3 -n quarkuscoffeeshop-demo get pods -l app=quarkuscoffeshop-customermocker -o jsonpath='{.items[*].spec.containers[*].resources}'
 ```
 
 ## Related Links

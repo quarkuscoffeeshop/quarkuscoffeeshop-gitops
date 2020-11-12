@@ -2,32 +2,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quarkus-cafe-customermocker
+  name: quarkuscoffeshop-customermocker
   labels:
-    app: quarkus-cafe-customermocker
+    app: quarkuscoffeshop-customermocker
 spec:
   replicas: 0
   selector:
     matchLabels:
-      app: quarkus-cafe-customermocker
+      app: quarkuscoffeshop-customermocker
   template:
     metadata:
-      name: quarkus-cafe-customermocker-deployment
+      name: quarkuscoffeshop-customermocker-deployment
       labels:
-        app:  quarkus-cafe-customermocker
-        app.kubernetes.io/component: quarkus-cafe-customermocker
-        app.kubernetes.io/instance: quarkus-cafe-customermocker
-        app.kubernetes.io/part-of: quarkus-cafe
-        quarkus-cafe: ""
-        app.openshift.io/runtime-namespace: quarkus-cafe-demo
+        app:  quarkuscoffeshop-customermocker
+        app.kubernetes.io/component: quarkuscoffeshop-customermocker
+        app.kubernetes.io/instance: quarkuscoffeshop-customermocker
+        app.kubernetes.io/part-of: quarkuscoffeshop
+        quarkuscoffeshop: ""
+        app.openshift.io/runtime-namespace: quarkuscoffeshop-demo
     spec:
       containers:
-        - name: quarkus-cafe-customermocker
-          image: jeremydavis/quarkus-cafe-customermocker:2.3.0
+        - name: quarkuscoffeshop-customermocker
+          image: jeremydavis/quarkuscoffeshop-customermocker:4.1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
               protocol: TCP
           env:
             - name: REST_URL
-              value: http://quarkus-cafe-web-quarkus-cafe-demo.apps.ocp4.example.com
+              value: http://quarkuscoffeshop-web-quarkuscoffeshop-demo.apps.ocp4.example.com
