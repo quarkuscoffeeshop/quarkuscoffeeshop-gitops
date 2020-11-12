@@ -22,7 +22,7 @@ View Cluster status
 
 ### Clone quarkus cafe demo repo locally 
 ```
-git clone https://github.com/jeremyrdavis/quarkus-cafe-demo.git
+git clone https://github.com/jeremyrdavis/quarkuscoffeeshop-demo.git
 ```
 
 ### OpenShift 4.x Instructions 
@@ -52,7 +52,7 @@ cat <<EOF | oc create -f -
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: quarkus-cafe-demo
+  name: quarkuscoffeeshop-demo
 EOF
 ```
 
@@ -66,7 +66,7 @@ metadata:
   labels:
     app: quarkus-cafe-details
   name: quarkus-cafe-app
-  namespace: quarkus-cafe-demo
+  namespace: quarkuscoffeeshop-demo
 spec:
   componentKinds:
   - group: apps.open-cluster-management.io
@@ -116,7 +116,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: Subscription
 metadata:
   name: quarkus-cafe
-  namespace: quarkus-cafe-demo
+  namespace: quarkuscoffeeshop-demo
   labels:
     app: quarkus-cafe-details
 spec:
@@ -131,7 +131,7 @@ spec:
   overrides:
   - clusterName: "/"
     clusterOverrides:
-    - path: "quarkus-cafe-demo"
+    - path: "quarkuscoffeeshop-demo"
       value: default
 EOF
 ```
@@ -144,7 +144,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: towhichcluster
-  namespace: quarkus-cafe-demo
+  namespace: quarkuscoffeeshop-demo
   labels:
     app: quarkus-cafe-details
 spec:

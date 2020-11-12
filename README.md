@@ -1,4 +1,4 @@
-# Quarkus Cafe on ACM - WIP
+# Quarkus Cafe on ACM
 ![](../images/acm-quarkus-cafe-app.png)
 
 ## Provision RHPDS Enviornment 
@@ -35,7 +35,7 @@ git clone https://github.com/jeremyrdavis/quarkus-cafe-demo.git
 ### OpenShift 4.x Instructions 
 **Login to OpenShift and create project**
 ```
-oc new-project quarkus-cafe-demo
+oc new-project quarkuscoffeeshop-demo
 ```
 
 **cd into admin tasks directory**
@@ -124,39 +124,39 @@ echo "Cluster 3: $(oc --context=cluster3 get ingresses.config.openshift.io clust
 
 ### update values for each cluster and push it to Github
 The following location require an update before continuing 
-* clusters/overlays/cluster1/quarkus-cafe-web/patch-env.yaml
-* clusters/overlays/cluster2/quarkus-cafe-web/patch-env.yaml
-* clusters/overlays/cluster3/quarkus-cafe-web/patch-env.yaml
-* clusters/overlays/cluster1/quarkus-cafe-customermocker/patch-env.yaml
-* clusters/overlays/cluster2/quarkus-cafe-customermocker/patch-env.yaml
-* clusters/overlays/cluster3/quarkus-cafe-customermocker/patch-env.yaml
+* clusters/overlays/cluster1/quarkuscoffeeshop-web/patch-env.yaml
+* clusters/overlays/cluster2/quarkuscoffeeshop-web/patch-env.yaml
+* clusters/overlays/cluster3/quarkuscoffeeshop-web/patch-env.yaml
+* clusters/overlays/cluster1/quarkuscoffeeshop-customermocker/patch-env.yaml
+* clusters/overlays/cluster2/quarkuscoffeeshop-customermocker/patch-env.yaml
+* clusters/overlays/cluster3/quarkuscoffeeshop-customermocker/patch-env.yaml
 
 
 **Update routes for Quarkus Cafe Application**
 ```
-cp  clusters/overlays/cluster1/quarkus-cafe-web/route.yaml.backup clusters/overlays/cluster1/quarkus-cafe-web/route.yaml
+cp  clusters/overlays/cluster1/quarkuscoffeeshop-web/route.yaml.backup clusters/overlays/cluster1/quarkuscoffeeshop-web/route.yaml
 
-cp  clusters/overlays/cluster2/quarkus-cafe-web/route.yaml.backup  clusters/overlays/cluster2/quarkus-cafe-web/route.yaml
+cp  clusters/overlays/cluster2/quarkuscoffeeshop-web/route.yaml.backup  clusters/overlays/cluster2/quarkuscoffeeshop-web/route.yaml
 
-cp  clusters/overlays/cluster3/quarkus-cafe-web/route.yaml.backup  clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
+cp  clusters/overlays/cluster3/quarkuscoffeeshop-web/route.yaml.backup  clusters/overlays/cluster3/quarkuscoffeeshop-web/route.yaml
 
 # Define the variable of `ROUTE_CLUSTER1`
-ROUTE_CLUSTER1=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+ROUTE_CLUSTER1=quarkuscoffeeshop-web-quarkuscoffeeshop-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 
 # Define the variable of `ROUTE_CLUSTER2`
-ROUTE_CLUSTER2=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+ROUTE_CLUSTER2=quarkuscoffeeshop-web-quarkuscoffeeshop-demo.$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 
 # Define the variable of `ROUTE_CLUSTER3`  ::: OPTIONAL
-ROUTE_CLUSTER3=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+ROUTE_CLUSTER3=quarkuscoffeeshop-web-quarkuscoffeeshop-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 
 # Replace the value of changeme with `ROUTE_CLUSTER1` in the file `route.yaml`
-sed -i "s/changeme/${ROUTE_CLUSTER1}/" clusters/overlays/cluster1/quarkus-cafe-web/route.yaml
+sed -i "s/changeme/${ROUTE_CLUSTER1}/" clusters/overlays/cluster1/quarkuscoffeeshop-web/route.yaml
 
 # Replace the value of changeme with `ROUTE_CLUSTER2` in the file `route.yaml`
-sed -i "s/changeme/${ROUTE_CLUSTER2}/" clusters/overlays/cluster2/quarkus-cafe-web/route.yaml
+sed -i "s/changeme/${ROUTE_CLUSTER2}/" clusters/overlays/cluster2/quarkuscoffeeshop-web/route.yaml
 
 # Replace the value of changeme with `ROUTE_CLUSTER3` in the file `route.yaml`  ::: OPTIONAL
-sed -i "s/changeme/${ROUTE_CLUSTER3}/" clusters/overlays/cluster3/quarkus-cafe-web/route.yaml
+sed -i "s/changeme/${ROUTE_CLUSTER3}/" clusters/overlays/cluster3/quarkuscoffeeshop-web/route.yaml
 ```
 
 
@@ -190,6 +190,10 @@ git push
 oc config use-context hubcluster
 ```
 
+## Deploy using tekton pipelines
+[Quarkus Cafe Deployment  on ACM using tekton pipelines](tekton-demo-deployment.md)
+
+## Deploy via CLI
 **Create namespace for subscription**
 ```
 oc create -f acm-configs/01_namespace.yaml
@@ -229,30 +233,30 @@ oc create -f acm-configs/05_subscription_cluster3.yaml
 ```
 # cluster 1 
 oc config use-context cluster1
-oc get pods -n quarkus-cafe-demo
+oc get pods -n quarkuscoffeeshop-demo
 
 # cluster 2
 oc config use-context cluster1
-oc get pods -n quarkus-cafe-demo
+oc get pods -n quarkuscoffeeshop-demo
 
 # cluster 3
 oc config use-context cluster1
-oc get pods -n quarkus-cafe-demo
+oc get pods -n quarkuscoffeeshop-demo
 ```
 
 
 **Access the cluster URls**
 ```
 # Test against cluster 1
-ROUTE_CLUSTER1=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+ROUTE_CLUSTER1=quarkuscoffeeshop-web-quarkuscoffeeshop-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 echo http://$ROUTE_CLUSTER1/cafe
 
 # Test against cluster 2
-ROUTE_CLUSTER2=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+ROUTE_CLUSTER2=quarkuscoffeeshop-web-quarkuscoffeeshop-demo.$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 echo http://$ROUTE_CLUSTER2/cafe
 
 # Test against cluster 3 ::: OPTIONAL
-ROUTE_CLUSTER3=quarkus-cafe-web-quarkus-cafe-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+ROUTE_CLUSTER3=quarkuscoffeeshop-web-quarkuscoffeeshop-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 echo http://$ROUTE_CLUSTER3/cafe
 ```
 

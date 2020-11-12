@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quarkuscoffeeshop-customermocker
+spec:
+  template:
+    spec:
+      containers:
+        - name: quarkuscoffeeshop-customermocker
+          env:
+            - name: REST_URL
+              value: http://quarkus-cafe-web-quarkuscoffeeshop-demo.apps.ocp4.example.com

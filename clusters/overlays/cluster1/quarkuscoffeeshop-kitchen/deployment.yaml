@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quarkuscoffeeshop-kitchen
+  labels:
+    app: quarkuscoffeeshop-kitchen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quarkuscoffeeshop-kitchen
+  template:
+    metadata:
+      name: quarkuscoffeeshop-kitchen-deployment
+      labels:
+        app:  quarkuscoffeeshop-kitchen
+        app.kubernetes.io/component: quarkuscoffeeshop-kitchen
+        app.kubernetes.io/instance: quarkuscoffeeshop-kitchen
+        app.kubernetes.io/part-of: quarkus-cafe
+        quarkus-cafe: ""
+        app.openshift.io/runtime-namespace: quarkuscoffeeshop-demo
+    spec:
+      containers:
+        - name: quarkuscoffeeshop-kitchen
+          image: jeremydavis/quarkuscoffeeshop-kitchen:4.1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: KAFKA_BOOTSTRAP_URLS
+              value: cafe-cluster-kafka-bootstrap:9092

@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: quarkuscoffeshop-web
+  namespace: quarkuscoffeeshop-demo
+spec:
+  host: changeme
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: quarkuscoffeshop-web
+    weight: 100
+  wildcardPolicy: None
