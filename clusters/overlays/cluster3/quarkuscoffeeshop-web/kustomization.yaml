@@ -4,7 +4,7 @@ resources:
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
-- name: jeremydavis/quarkuscoffeshop-web
+- name: jeremydavis/quarkuscoffeeshop-web
   newTag: 2.4.0
 patchesStrategicMerge:
   - patch-env.yaml

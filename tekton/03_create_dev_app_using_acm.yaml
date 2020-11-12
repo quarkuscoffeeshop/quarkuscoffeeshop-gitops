@@ -15,6 +15,6 @@ spec:
       args:
         - |-
           echo "**** DEV ENVIRONMENT: Creating application on RH ACM ****"
-          oc apply -f acm-configs/04_placement_cluster1.yaml -n quarkuscoffeshop-demo
+          oc apply -f acm-configs/04_placement_cluster1.yaml -n quarkuscoffeeshop-demo
           echo "**** DEV ENVIRONMENT: Creating channel on RH ACM ****"
-          oc apply -f acm-configs/05_subscription_cluster1.yaml -n quarkuscoffeshop-demo
+          oc apply -f acm-configs/05_subscription_cluster1.yaml -n quarkuscoffeeshop-demo

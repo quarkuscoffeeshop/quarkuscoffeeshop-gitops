@@ -15,6 +15,6 @@ spec:
         - |-
           ls -lath .
           echo "**** Creating Channel and on RH ACM ****"
-          oc apply -f acm-configs/02_channel.yaml -n quarkuscoffeshop-demo
+          oc apply -f acm-configs/02_channel.yaml -n quarkuscoffeeshop-demo
           echo "**** Creating Application Definition and on RH ACM ****"
-          oc apply -f acm-configs/03_application_webapp.yaml -n quarkuscoffeshop-demo
+          oc apply -f acm-configs/03_application_webapp.yaml -n quarkuscoffeeshop-demo
