@@ -21,14 +21,14 @@ spec:
           severity: medium
           namespaceSelector:
             exclude: ["kube-*"]
-            include: ["quarkus-cafe-demo"]
+            include: ["quarkuscoffeeshop-demo"]
           object-templates:
             - complianceType: musthave
               objectDefinition:
                 apiVersion: v1
                 kind: LimitRange
                 metadata:
-                  name: quarkus-cafe-customermocker
+                  name: quarkuscoffeeshop-customermocker
                 spec:
                   limits:
                   - default:

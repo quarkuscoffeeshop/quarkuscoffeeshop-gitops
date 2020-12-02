@@ -17,8 +17,8 @@ spec:
         app:  quarkuscoffeeshop-counter
         app.kubernetes.io/component: quarkuscoffeeshop-counter
         app.kubernetes.io/instance: quarkuscoffeeshop-counter
-        app.kubernetes.io/part-of: quarkus-cafe
-        quarkus-cafe: ""
+        app.kubernetes.io/part-of: quarkuscoffeeshop
+        quarkuscoffeeshop: ""
         app.openshift.io/runtime-namespace: quarkuscoffeeshop-demo
     spec:
       containers:
@@ -34,8 +34,8 @@ spec:
             - name: MONGO_DB
               value: cafedb
             - name: MONGO_URL
-              value: mongodb_url: mongodb://mongodb:7lIHuw&#0KrE+srv@quarkus-coffeeshop-replica-set-0.quarkus-coffeeshop-replica-set-svc.quarkuscoffeeshop-demo.svc.cluster.local:27017,quarkus-coffeeshop-replica-set-1.quarkus-coffeeshop-replica-set-svc.quarkuscoffeeshop-demo.svc.cluster.local:27017,quarkus-coffeeshop-replica-set-2.quarkus-coffeeshop-replica-set-svc.quarkuscoffeeshop-demo.svc.cluster.local:27017/cafedb?replicaSet=quarkus-coffeeshop-replica-set
+              value: mongodb://mongodb:7lIHuw&#0KrE+srv@quarkus-coffeeshop-replica-set-0.quarkus-coffeeshop-replica-set-svc.quarkuscoffeeshop-demo.svc.cluster.local:27017,quarkus-coffeeshop-replica-set-1.quarkus-coffeeshop-replica-set-svc.quarkuscoffeeshop-demo.svc.cluster.local:27017,quarkus-coffeeshop-replica-set-2.quarkus-coffeeshop-replica-set-svc.quarkuscoffeeshop-demo.svc.cluster.local:27017/cafedb?replicaSet=quarkus-coffeeshop-replica-set
             - name: MONGO_USERNAME
               value: mongodb
             - name: MONGO_PASSWORD
-              value: 7lIHuw&#0KrE
+              value: 7lIHuw&#0KrEx

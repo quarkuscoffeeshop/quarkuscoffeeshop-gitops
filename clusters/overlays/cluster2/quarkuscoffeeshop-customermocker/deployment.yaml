@@ -17,8 +17,8 @@ spec:
         app:  quarkuscoffeeshop-customermocker
         app.kubernetes.io/component: quarkuscoffeeshop-customermocker
         app.kubernetes.io/instance: quarkuscoffeeshop-customermocker
-        app.kubernetes.io/part-of: quarkus-cafe
-        quarkus-cafe: ""
+        app.kubernetes.io/part-of: quarkuscoffeeshop
+        quarkuscoffeeshop: ""
         app.openshift.io/runtime-namespace: quarkuscoffeeshop-demo
     spec:
       containers:
@@ -30,4 +30,4 @@ spec:
               protocol: TCP
           env:
             - name: REST_URL
-              value: http://quarkus-cafe-web-quarkuscoffeeshop-demo.apps.ocp4.example.com
+              value: http://quarkuscoffeeshop-web-quarkuscoffeeshop-demo.apps.ocp4.example.com
