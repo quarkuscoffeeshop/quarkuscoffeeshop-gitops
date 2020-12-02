@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: quarkuscoffeeshop-web
-          image: jeremydavis/quarkuscoffeeshop-web:2.4.0
+          image: jeremydavis/quarkuscoffeeshop-web:3.1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
