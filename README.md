@@ -120,24 +120,30 @@ pathname: 'https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-gitops.git'
 * imageTag is located under the kustomiztion.yaml in each directory 
 * enviornment varaibles are located in each directory under patch-env.yaml
 
-### Collect the quarkus cafe endpoints for config files below 
+### Collect the quarkus cafe endpoints for cluster1 
 ```
-echo "Cluster 1: $(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')"
-
-echo "Cluster 2: $(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')"
-
-echo "Cluster 3: $(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')"
+$ echo "Cluster 1: $(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')"
+$ ENDPOINT=$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+$ sed -i "s/apps.ocp4.example.com/${ENDPOINT}/g" clusters/overlays/cluster1/quarkuscoffeeshop-web/patch-env.yaml
+$ sed -i "s/apps.ocp4.example.com/${ENDPOINT}/g" clusters/overlays/cluster1/quarkuscoffeeshop-customermocker/patch-env.yaml
 ```
 
+### Collect the quarkus cafe endpoints for cluster2 
+```
+$ echo "Cluster 2: $(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')"
+$ ENDPOINT=$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+$ sed -i "s/apps.ocp4.example.com/${ENDPOINT}/g" clusters/overlays/cluster2/quarkuscoffeeshop-web/patch-env.yaml
+$ sed -i "s/apps.ocp4.example.com/${ENDPOINT}/g" clusters/overlays/cluster2/quarkuscoffeeshop-customermocker/patch-env.yaml
+```
 
-### update values for each cluster and push it to Github
-The following location require an update before continuing 
-* clusters/overlays/cluster1/quarkuscoffeeshop-web/patch-env.yaml
-* clusters/overlays/cluster2/quarkuscoffeeshop-web/patch-env.yaml
-* clusters/overlays/cluster3/quarkuscoffeeshop-web/patch-env.yaml
-* clusters/overlays/cluster1/quarkuscoffeeshop-customermocker/patch-env.yaml
-* clusters/overlays/cluster2/quarkuscoffeeshop-customermocker/patch-env.yaml
-* clusters/overlays/cluster3/quarkuscoffeeshop-customermocker/patch-env.yaml
+### Collect the quarkus cafe endpoints for cluster 3 
+```
+$ echo "Cluster 3: $(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')"
+$ ENDPOINT=$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+$ sed -i "s/apps.ocp4.example.com/${ENDPOINT}/g" clusters/overlays/cluster3/quarkuscoffeeshop-web/patch-env.yaml
+$ sed -i "s/apps.ocp4.example.com/${ENDPOINT}/g" clusters/overlays/cluster3/quarkuscoffeeshop-customermocker/patch-env.yaml
+```
+
 
 
 **Update routes for Quarkus Cafe Application**
@@ -151,17 +157,17 @@ cp  clusters/overlays/cluster3/quarkuscoffeeshop-web/route.yaml.backup  clusters
 # Define the variable of `ROUTE_CLUSTER1`
 ROUTE_CLUSTER1=quarkuscoffeeshop-web-quarkuscoffeeshop-demo.$(oc --context=cluster1 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 
-# Define the variable of `ROUTE_CLUSTER2`
-ROUTE_CLUSTER2=quarkuscoffeeshop-web-quarkuscoffeeshop-demo.$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
-
-# Define the variable of `ROUTE_CLUSTER3`  ::: OPTIONAL
-ROUTE_CLUSTER3=quarkuscoffeeshop-web-quarkuscoffeeshop-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
-
 # Replace the value of changeme with `ROUTE_CLUSTER1` in the file `route.yaml`
 sed -i "s/changeme/${ROUTE_CLUSTER1}/" clusters/overlays/cluster1/quarkuscoffeeshop-web/route.yaml
 
+# Define the variable of `ROUTE_CLUSTER2`
+ROUTE_CLUSTER2=quarkuscoffeeshop-web-quarkuscoffeeshop-demo.$(oc --context=cluster2 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
+
 # Replace the value of changeme with `ROUTE_CLUSTER2` in the file `route.yaml`
 sed -i "s/changeme/${ROUTE_CLUSTER2}/" clusters/overlays/cluster2/quarkuscoffeeshop-web/route.yaml
+
+# Define the variable of `ROUTE_CLUSTER3`  ::: OPTIONAL
+ROUTE_CLUSTER3=quarkuscoffeeshop-web-quarkuscoffeeshop-demo.$(oc --context=cluster3 get ingresses.config.openshift.io cluster -o jsonpath='{ .spec.domain }')
 
 # Replace the value of changeme with `ROUTE_CLUSTER3` in the file `route.yaml`  ::: OPTIONAL
 sed -i "s/changeme/${ROUTE_CLUSTER3}/" clusters/overlays/cluster3/quarkuscoffeeshop-web/route.yaml
