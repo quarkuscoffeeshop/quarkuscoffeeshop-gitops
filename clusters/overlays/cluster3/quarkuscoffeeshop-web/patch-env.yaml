@@ -16,4 +16,6 @@ spec:
               value:  http://quarkuscoffeeshop-web-quarkuscoffeeshop-demo.apps.ocp4.example.com/dashboard/stream
             - name: CORS_ORIGINS
               value: http://quarkuscoffeeshop-demo.apps.ocp4.example.com
+            - name: STORE_ID
+              value: CHARLOTTE
 

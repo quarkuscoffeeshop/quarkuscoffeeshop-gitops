@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: quarkuscoffeeshop-kitchen
-          image: jeremydavis/quarkuscoffeeshop-kitchen:3.1.0
+          image: quay.io/quarkuscoffeeshop/quarkuscoffeeshop-kitchen:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

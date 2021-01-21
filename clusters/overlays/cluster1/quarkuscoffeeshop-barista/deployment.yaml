@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: quarkuscoffeeshop-barista
-          image: jeremydavis/quarkuscoffeeshop-barista:3.0.0
+          image: quay.io/quarkuscoffeeshop/quarkuscoffeeshop-barista:3.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8778

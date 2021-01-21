@@ -10,11 +10,15 @@ spec:
           env:
             - name: KAFKA_BOOTSTRAP_URLS
               value: cafe-cluster-kafka-bootstrap:9092
-            - name: MONGO_DB
-              value: cafedb
-            - name: MONGO_URL
-              value:  mongodb://mongodb:pqD4jJv*LQS&ADKU2gOz+srv@quarkus-coffeeshop-replica-set-0.quarkus-coffeeshop-replica-set-svc.quarkuscoffeeshop-demo.svc.cluster.local:27017,quarkus-coffeeshop-replica-set-1.quarkus-coffeeshop-replica-set-svc.quarkuscoffeeshop-demo.svc.cluster.local:27017,quarkus-coffeeshop-replica-set-2.quarkus-coffeeshop-replica-set-svc.quarkuscoffeeshop-demo.svc.cluster.local:27017/cafedb?replicaSet=quarkus-coffeeshop-replica-set
-            - name: MONGO_USERNAME
-              value: mongodb
-            - name: MONGO_PASSWORD
-              value: pqD4jJv*LQS&ADKU2gOz
+            - name: PGSQL_URL
+              value: 'jdbc:postgresql://coffeeshopdb:5432/coffeeshopdb?currentSchema=coffeeshop'
+            - name: PGSQL_USER
+              value: coffeshopadmin
+            - name: PGSQL_PASS
+              value: 'changepassword'
+            - name: LOG_SQL
+              value: 'true'
+            - name: QUARKUS_LOG_LEVEL
+              value: INFO
+            - name: QUARKUSCOFFEESHOP_LOG_LEVEL
+              value: DEBUG
