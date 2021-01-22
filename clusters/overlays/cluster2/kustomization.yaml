@@ -5,4 +5,5 @@ resources:
 - quarkuscoffeeshop-counter/
 - quarkuscoffeeshop-customermocker/
 - quarkuscoffeeshop-kitchen/
+- quarkuscoffeeshop-inventory/
 - quarkuscoffeeshop-web/
