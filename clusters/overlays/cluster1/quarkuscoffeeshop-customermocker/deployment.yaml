@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: quarkuscoffeeshop-customermocker
-          image: jeremydavis/quarkuscoffeeshop-customermocker:3.0.1
+          image: quay.io/quarkuscoffeeshop/quarkuscoffeeshop-customermocker:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
