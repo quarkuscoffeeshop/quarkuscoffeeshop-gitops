@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quarkuscoffeeshop-inventory
+  labels:
+    app: quarkuscoffeeshop-inventory
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quarkuscoffeeshop-inventory
+  template:
+    metadata:
+      name: quarkuscoffeeshop-inventory-deployment
+      labels:
+        app:  quarkuscoffeeshop-inventory
+        app.kubernetes.io/component: quarkuscoffeeshop-inventory
+        app.kubernetes.io/instance: quarkuscoffeeshop-inventory
+        app.kubernetes.io/part-of: quarkuscoffeeshop
+        quarkuscoffeeshop: ""
+        app.openshift.io/runtime-namespace: quarkuscoffeeshop-demo
+    spec:
+      containers:
+        - name: quarkuscoffeeshop-inventory
+          image: quay.io/quarkuscoffeeshop/quarkuscoffeeshop-inventory:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: KAFKA_BOOTSTRAP_URLS
+              value: cafe-cluster-kafka-bootstrap:9092
