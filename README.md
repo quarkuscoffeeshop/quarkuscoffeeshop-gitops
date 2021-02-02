@@ -19,27 +19,20 @@ $ sudo mv kustomize /usr/local/bin/
 ## Administrator Tasks On Target Cluster (OCP4 ACM Managed)
 
 
-<<<<<<< HEAD
-### Run ansible playbook to install AMQ and MongoDB on target clusters.
-=======
 ### Run ansible playbook to install AMQ and Postgres on target clusters.
 
 #### Install Postgres Operator
 [install-postgres-operator](https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-helm/wiki#install-postgres-operator)
 
 #### Install Amq Streams and Configure Postgres DB
->>>>>>> dev
 ```
 $ ansible-galaxy collection install community.kubernetes
 $ ansible-galaxy install tosin2013.quarkus_cafe_demo_role
 $ export DOMAIN=ocp4.example.com
 $ export OCP_TOKEN=123456789
-<<<<<<< HEAD
 $ export GROUP=$(id -gn)
-=======
 $ export POSTGRES_PASSWORD=123456789
 $ export STORE_ID=ATLANTA
->>>>>>> dev
 $ cat >deploy-quarkus-cafe.yml<<YAML
 - hosts: localhost
   become: yes
