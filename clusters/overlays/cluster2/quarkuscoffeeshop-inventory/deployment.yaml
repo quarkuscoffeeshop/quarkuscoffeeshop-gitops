@@ -2,28 +2,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quarkuscoffeeshop-kitchen
+  name: quarkuscoffeeshop-inventory
   labels:
-    app: quarkuscoffeeshop-kitchen
+    app: quarkuscoffeeshop-inventory
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: quarkuscoffeeshop-kitchen
+      app: quarkuscoffeeshop-inventory
   template:
     metadata:
-      name: quarkuscoffeeshop-kitchen-deployment
+      name: quarkuscoffeeshop-inventory-deployment
       labels:
-        app:  quarkuscoffeeshop-kitchen
-        app.kubernetes.io/component: quarkuscoffeeshop-kitchen
-        app.kubernetes.io/instance: quarkuscoffeeshop-kitchen
+        app:  quarkuscoffeeshop-inventory
+        app.kubernetes.io/component: quarkuscoffeeshop-inventory
+        app.kubernetes.io/instance: quarkuscoffeeshop-inventory
         app.kubernetes.io/part-of: quarkuscoffeeshop
         quarkuscoffeeshop: ""
         app.openshift.io/runtime-namespace: quarkuscoffeeshop-demo
     spec:
       containers:
-        - name: quarkuscoffeeshop-kitchen
-          image: quay.io/quarkuscoffeeshop/quarkuscoffeeshop-kitchen:latest
+        - name: quarkuscoffeeshop-inventory
+          image: quay.io/quarkuscoffeeshop/quarkuscoffeeshop-inventory:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

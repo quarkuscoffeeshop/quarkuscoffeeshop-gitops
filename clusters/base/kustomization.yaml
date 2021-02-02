@@ -3,4 +3,5 @@ resources:
 - quarkuscoffeeshop-counter-service.yaml
 - quarkuscoffeeshop-customermocker-service.yaml
 - quarkuscoffeeshop-kitchen-service.yaml
+- quarkuscoffeeshop-inventory-service.yaml
 - quarkuscoffeeshop-web-service.yaml

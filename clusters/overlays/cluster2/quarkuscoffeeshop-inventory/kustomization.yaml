@@ -3,7 +3,7 @@ resources:
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
-- name: quay.io/quarkuscoffeeshop/quarkuscoffeeshop-kitchen
+- name: quay.io/quarkuscoffeeshop/quarkuscoffeeshop-inventory
   newTag: 5.0.0-SNAPSHOT
 patchesStrategicMerge:
   - patch-env.yaml
