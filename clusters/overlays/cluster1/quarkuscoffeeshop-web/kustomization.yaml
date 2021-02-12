@@ -5,6 +5,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: quay.io/quarkuscoffeeshop/quarkuscoffeeshop-web
-  newTag: 5.0.1-SNAPSHOT
+  newTag: 5.0.3-SNAPSHOT
 patchesStrategicMerge:
   - patch-env.yaml
