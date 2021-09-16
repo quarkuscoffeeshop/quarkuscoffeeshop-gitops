@@ -21,40 +21,63 @@ $ sudo mv kustomize /usr/local/bin/
 
 ### Run ansible playbook to install AMQ and Postgres on target clusters.
 
-#### Install Postgres Operator
+#### Install Postgres Operator and each cluster
+```
+$ curl -OL https://raw.githubusercontent.com/tosin2013/postgres-operator/main/scripts/deploy-postgres-operator.sh
+$ chmod +x deploy-postgres-operator.sh
+$ ./deploy-postgres-operator.sh 
+./deploy-postgres-operator.sh [OPTION]
+ Options:
+  -d      Add domain 
+  -t      OpenShift Token
+  -u      Uninstall deployment
+  To deploy postgres-operator playbooks
+  ./deploy-postgres-operator.sh  -d ocp4.example.com -o sha-123456789 
+  To Delete postgres-operator playbooks from OpenShift
+  ./deploy-postgres-operator.sh  -d ocp4.example.com -o sha-123456789 -u true
+```
+
 [install-postgres-operator](https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-helm/wiki#install-postgres-operator)
 
-#### Install Amq Streams and Configure Postgres DB
+#### Install Amq Streams and Configure Postgres DB on each cluster 
 ```
-$ ansible-galaxy collection install community.kubernetes
-$ ansible-galaxy install tosin2013.quarkus_cafe_demo_role
-$ export DOMAIN=ocp4.example.com
-$ export OCP_TOKEN=123456789
-$ export GROUP=$(id -gn)
-$ export POSTGRES_PASSWORD=123456789
-$ export STORE_ID=ATLANTA
-$ cat >deploy-quarkus-cafe.yml<<YAML
-- hosts: localhost
-  become: yes
-  vars:
-    openshift_token: ${OCP_TOKEN}
-    openshift_url: https://api.${DOMAIN}:6443
-    insecure_skip_tls_verify: true
-    default_owner: ${USER}
-    default_group: ${GROUP}
-    project_namespace: quarkuscoffeeshop-demo
-    delete_deployment: false
-    skip_amq_install: false
-    skip_configure_postgres: false
-    skip_mongodb_operator_install: true
-    skip_quarkuscoffeeshop_helm_install: true
-    domain: ${DOMAIN}
-    postgres_password: "${POSTGRES_PASSWORD}"
-    storeid: ${STORE_ID}
-  roles:
-    - tosin2013.quarkus_cafe_demo_role
-YAML
-$ ansible-playbook  deploy-quarkus-cafe.yml
+$ curl -OL https://raw.githubusercontent.com/quarkuscoffeeshop/quarkuscoffeeshop-ansible/dev/files/deploy-quarkuscoffeeshop-ansible.sh
+$ chmod +x deploy-quarkuscoffeeshop-ansible.sh
+$ cat >env.variables<<EOF
+ACM_WORKLOADS=n
+AMQ_STREAMS=y
+CONFIGURE_POSTGRES=y
+MONGODB_OPERATOR=n
+MONGODB=n
+HELM_DEPLOYMENT=n
+EOF
+$ ./deploy-quarkuscoffeeshop-ansible.sh -d ocp4.example.com -t sha-123456789 -p 123456789 -s ATLANTA
+
+```
+
+#### Configure  ACM Workloads for hub cluster
+> The script will provide the following workloads
+* Gogs server
+* OpenShift Pipelines
+* OpenShift GitOps
+* Quay.io
+* AMQ Streams
+* Postgres Template deployment
+* homeoffice Tekton pipelines
+* quarkus-coffeeshop Tekton pipelines
+
+```
+$ curl -OL https://raw.githubusercontent.com/quarkuscoffeeshop/quarkuscoffeeshop-ansible/dev/files/deploy-quarkuscoffeeshop-ansible.sh
+$ chmod +x deploy-quarkuscoffeeshop-ansible.sh
+$ cat >env.variables<<EOF
+ACM_WORKLOADS=y
+AMQ_STREAMS=y
+CONFIGURE_POSTGRES=n
+MONGODB_OPERATOR=n
+MONGODB=n
+HELM_DEPLOYMENT=n
+EOF
+$ ./deploy-quarkuscoffeeshop-ansible.sh -d ocp4.example.com -t sha-123456789 -p 123456789 -s ATLANTA
 ```
 
 ## Install ACM Managed and Configure a HUB
@@ -62,13 +85,11 @@ $ ansible-playbook  deploy-quarkus-cafe.yml
 Import an existing cluster
 ![](https://i.imgur.com/IFdi3Ez.png)
 
-Run Genereated command on target machine
+Run generated command on target machine
 ![](https://i.imgur.com/6inP821.png)
 
 View Cluster status
 ![](https://i.imgur.com/YwLk7w4.png)
-
-
 
 ## Configure OpenShift client context for cluster admin access 
 
