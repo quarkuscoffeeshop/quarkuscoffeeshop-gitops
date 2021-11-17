@@ -11,7 +11,7 @@ spec:
             - name: KAFKA_BOOTSTRAP_URLS
               value: cafe-cluster-kafka-bootstrap:9092
             - name: PGSQL_URL
-              value: 'jdbc:postgresql://coffeeshopdb:5432/coffeeshopdb?currentSchema=coffeeshop'
+              value: 'jdbc:postgresql://coffeeshopdb-primary.quarkuscoffeeshop-demo.svc:5432/coffeeshopdb?currentSchema=coffeeshop'
             - name: PGSQL_USER
               value: coffeshopadmin
             - name: PGSQL_PASS
